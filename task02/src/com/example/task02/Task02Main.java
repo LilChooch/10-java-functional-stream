@@ -16,7 +16,13 @@ public class Task02Main {
 
     public static IntStream cycleGrayCode(int n) {
 
-        return null; // your implementation here
+        if (n < 1 || n > 16) {
+            throw new IllegalArgumentException("Неверное значение \"n\". Значение должно быть от 1 до 16 включительно.");
+        }
+
+        int size = 1 << n;
+        return IntStream.iterate(0, i -> (i + 1) % size)
+                .map(i -> i ^ (i >> 1));
 
     }
 
